@@ -9,6 +9,7 @@ import 'app/views/home/home_page.dart';
   runApp(const MyApp());
 }*/
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [

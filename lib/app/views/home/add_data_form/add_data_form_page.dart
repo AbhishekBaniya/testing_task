@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -156,7 +154,7 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
                     child: InkWell(
                       onTap: () {
                         ///TODO
-                        showFromDateDialog();
+                        showFromDateDialog(true);
                       },
                       child: DottedBorder(
                         color: Colors.grey.shade400,
@@ -177,10 +175,19 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
                                 ),
                                 Expanded(
                                   child: AppText(
-                                    label: widget.title,
+                                    label: context
+                                        .watch<AddEmployeeData>()
+                                        .fromDate
+                                        .toString(),
                                     softWrap: false,
                                     textStyle: TextStyle(
-                                      color: Colors.grey.shade400,
+                                      color: context
+                                                  .watch<AddEmployeeData>()
+                                                  .fromDate
+                                                  .toString() ==
+                                              "Select Date"
+                                          ? Colors.grey.shade400
+                                          : Colors.black,
                                       fontSize: 14.0,
                                     ),
                                   ),
@@ -200,6 +207,8 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
                     child: InkWell(
                       onTap: () {
                         ///TODO
+                        ///
+                        showFromDateDialog(false);
                       },
                       child: DottedBorder(
                         color: Colors.grey.shade400,
@@ -220,10 +229,19 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
                                 ),
                                 Expanded(
                                   child: AppText(
-                                    label: widget.title,
+                                    label: context
+                                        .watch<AddEmployeeData>()
+                                        .toDate
+                                        .toString(),
                                     softWrap: false,
                                     textStyle: TextStyle(
-                                      color: Colors.grey.shade400,
+                                      color: context
+                                                  .watch<AddEmployeeData>()
+                                                  .toDate
+                                                  .toString() ==
+                                              "Select Date"
+                                          ? Colors.grey.shade400
+                                          : Colors.black,
                                       fontSize: 14.0,
                                     ),
                                   ),
@@ -269,12 +287,16 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
                         child: AppButton(
                           bgColor: const Color(0xff1DA1F2),
                           labelColor: Colors.white,
-                          label: "Cancel",
-                          onTap: () {
-                            context
+                          label: "Save",
+                          onTap: () async {
+                            /*context
                                 .read<AddEmployeeData>()
                                 .setEmployeeProfession(
-                                    selectedValue: "object ${Random.secure()}");
+                                    selectedValue: "object ${Random.secure()}");*/
+
+                            context
+                                .read<AddEmployeeData>()
+                                .addData(context: context);
                           },
                         ),
                       ),
@@ -314,10 +336,11 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
               itemCount: items.length,
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  ///TODO
                   context
                       .read<AddEmployeeData>()
                       .setEmployeeProfession(selectedValue: items[index]);
+
+                  //insertData();
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -343,7 +366,7 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
     );
   }
 
-  void showFromDateDialog() => showDialog(
+  void showFromDateDialog(bool data) => showDialog(
         context: context,
         builder: (context) {
           return Dialog(
@@ -352,10 +375,31 @@ class _EmployeeDetailsPageState extends State<AddEmployeeDetailsPage> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             elevation: 16,
-            child: const CustomCalender(),
+            child: CustomCalender(
+              isSelectedOldDate: data,
+            ),
           );
         },
       );
+
+  /*void _updateNote(int index) async {
+    var updatedNote = EmployeesModel(
+      id: _notes[index].id,
+      name: 'Updated Note',
+      description: 'Updated Description',
+    );
+    await dbHelper.update(updatedNote);
+    setState(() {
+      _notes[index] = updatedNote;
+    });
+  }*/
+
+  /*void _deleteNote(int index) async {
+    await dbHelper.delete(_notes[index].id!);
+    setState(() {
+      _notes.removeAt(index);
+    });
+  }*/
 }
 /*
 AppTextField(

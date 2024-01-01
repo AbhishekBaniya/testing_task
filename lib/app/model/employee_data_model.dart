@@ -1,22 +1,45 @@
-class Employee {
+class EmployeesModel {
   final int? id;
-  final String eName;
-  final String eRoll;
-  final String? fromDate, toDate, week;
-  final DateTime createdAt;
-  final bool isDone;
+  final dynamic eName;
+  final dynamic eRoll;
+  final dynamic fromDate, toDate, week;
+  final dynamic? createdAt;
+  final dynamic isDone;
 
-  Employee(
+  EmployeesModel(
       {this.id,
       required this.eName,
       required this.eRoll,
-      this.fromDate,
-      this.toDate,
-      this.week,
-      required this.createdAt,
+      required this.fromDate,
+      required this.toDate,
+      required this.week,
+      this.createdAt,
       required this.isDone});
 
-  Employee.fromJsonMap(
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        'id': id,
+        'eName': eName,
+        'eRoll': eRoll,
+        'fromDate': fromDate,
+        'toDate': toDate,
+        'week': week,
+        'isDone': isDone,
+        //'createdAt': createdAt.millisecondsSinceEpoch.toString(),
+        'createdAt': createdAt,
+      };
+
+  factory EmployeesModel.fromMap(Map<String, dynamic> map) => EmployeesModel(
+        id: map['id'],
+        eName: map['eName'],
+        eRoll: map['eRoll'],
+        fromDate: map['fromDate'],
+        toDate: map['toDate'],
+        week: map['week'],
+        createdAt: map['createdAt'],
+        isDone: map['isDone'],
+      );
+
+  EmployeesModel.fromJsonMap(
     Map<String, dynamic> map,
   )   : id = map['id'] as int,
         eName = map['eName'] as String,
