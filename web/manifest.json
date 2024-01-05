@@ -1,6 +1,6 @@
 {
-    "name": "testing_user_list_with_api",
-    "short_name": "testing_user_list_with_api",
+    "name": "gridsearchview",
+    "short_name": "gridsearchview",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.abhishek.task" "\0"
-            VALUE "FileDescription", "testing_user_list_with_api" "\0"
+            VALUE "CompanyName", "com.gridsearch" "\0"
+            VALUE "FileDescription", "gridsearchview" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "testing_user_list_with_api" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.abhishek.task. All rights reserved." "\0"
-            VALUE "OriginalFilename", "testing_user_list_with_api.exe" "\0"
-            VALUE "ProductName", "testing_user_list_with_api" "\0"
+            VALUE "InternalName", "gridsearchview" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.gridsearch. All rights reserved." "\0"
+            VALUE "OriginalFilename", "gridsearchview.exe" "\0"
+            VALUE "ProductName", "gridsearchview" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
